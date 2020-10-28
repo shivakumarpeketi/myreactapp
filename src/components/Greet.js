@@ -8,7 +8,7 @@ let Greet = (props) => {
 
     return  (
     <div>
-        <h2>Welcome to React handson</h2>
+        <h2>Welcome to React handson...!</h2>
         <h1 >Hello {props.name} {props.surName} </h1>
         {props.childre}
     </div>

@@ -12,7 +12,6 @@ import React, { Component } from 'react'
          this.setState((prevState) => ({
              count : prevState.count+1
          }))
-
      }
     render() {
         return (

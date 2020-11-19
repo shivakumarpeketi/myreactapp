@@ -1,14 +1,15 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-//import EventBind from './components/EventBind';
-// import ParentComponent from './components/ParentComponent';
-import PersonList from './components/PersonList';
+import StateRequirement from './hooks/StateRequirement';
+//import Table from './fragments/Table';
+import Timer from './hooks/Timer';
 
 function App() {
   return (
     <div className="App">
-          <PersonList />
+         <Timer />
+         <StateRequirement/>
       </div>
   );
 }

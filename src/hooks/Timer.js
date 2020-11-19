@@ -1,11 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react'
+import NumberFormat from 'react-number-format';
 
+
+const defaultResetTimer = {
+    seconds: 0,
+    minutes: 0,
+    stop: false,
+    reset: false,
+    resume:false
+}
 
 function Timer() {
     const [timer, setTimer] = useState({
         seconds: 55,
         minutes: 0,
-        stopClock: false
+        stop: false,
+        reset: true,
+        resume:false
     })
 
     const updateSeconds = () => {
@@ -26,7 +37,6 @@ function Timer() {
         )
     }
 
-
     let interval = useRef();
     useEffect(() => {
         console.log("Stop watch Running...! ")
@@ -34,20 +44,37 @@ function Timer() {
     }, [])
 
     useEffect(() => {
-        if (timer.stopClock) {
-            console.log("watch Stopped Displaying: " + timer.stopClock)
+        if (timer.stop || !timer.reset) {
+            console.log("watch Stopped/Reset action happened: ")
             clearInterval(interval.current)
         }
-    }, [timer.stopClock])
+    }, [timer.stop, timer.reset])
+
+    useEffect(() => {
+        if(timer.resume){
+            interval.current = setInterval(updateSeconds, 1000);
+        }
+    }, [timer.resume])
 
     return (
         <>
             <h2> Timer</h2><br />
-            <h1>{timer.minutes}:{timer.seconds}</h1>
-            <div><button onClick={() => setTimer({
+            <h1>{timer.minutes}:<NumberFormat thousandSeparator={true} displayType={'text'} format="##" value={timer.seconds} width="2"/></h1>
+            <div>
+            <button disabled={!timer.stop} onClick={() => setTimer({
                 ...timer,
-                stopClock: true
+                resume: true,
+                stop:false
+            })} >Resume</button>
+                <button  disabled={timer.stop} onClick={() => setTimer({
+                ...timer,
+                stop: true,
+                resume: false
             })} >Stop</button>
+            <button onClick= { () => setTimer({
+                ...defaultResetTimer
+            })}>Reset</button>
+            
             </div>
         </>
     )

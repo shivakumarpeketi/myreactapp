@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-
 function Clock() {
     const [stopClock, setStopClock] = useState(false)
     const [seconds, setSeconds] = useState(10)

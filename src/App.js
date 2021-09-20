@@ -1,16 +1,13 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import StateRequirement from './hooks/StateRequirement';
-//import Table from './fragments/Table';
-import Timer from './hooks/Timer';
+import UseMemoHook from './hooks/UseMemoHook';
 
 function App() {
   return (
     <div className="App">
-         <Timer />
-         <StateRequirement/>
-      </div>
+      <UseMemoHook />
+    </div>
   );
 }
 
